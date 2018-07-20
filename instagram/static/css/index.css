@@ -1,0 +1,42 @@
+
+/* Body */
+html, body{
+    font-family: 'Raleway', sans-serif;
+    font-size: 100%;
+    background-color: #fafafa;
+}
+.top-margin{
+    margin-top: 5em;
+}
+
+/* Navbar styling */
+
+#navMain {
+    font-family: 'Raleway';
+    font-size: 20px;
+    /* text-transform: uppercase; */
+    background: rgb(255, 255, 255);
+}
+
+#navMain .navbar-toggler {
+    font-size: 16px;
+    padding: 11px;
+    color: rgb(0, 0, 0);
+}
+
+#navMain a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+#navMain .navbar-nav .nav-item:active,
+#navMain .navbar-nav .nav-item:focus {
+    outline: none;
+    background-color: rgb(240, 120, 120);
+}
+#logo-name{
+    float: left;
+    width: 120px;
+    padding-left: 10px;
+}
+/* End of Navbar */
