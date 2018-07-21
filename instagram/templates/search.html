@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{% load static%}
+{% block content %}
+
+{{block.super}}
+
+<!-- Landing Page -->
+<div class="container">
+        {% if images%}
+        <h2>Found for searched term {{message}}</h2>
+        {% else %}
+        <h2>Found 0 users for the search term {{message}}</h2>
+        {% endif %}
+</div>
+
+{% endblock %}
