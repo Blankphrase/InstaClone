@@ -1,6 +1,6 @@
 from django.db import models
 import datetime as dt
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import User
 # from tinymce.models import HTMLField
 from pyuploadcare.dj.models import ImageField
 
@@ -9,7 +9,7 @@ class Profile(models.Model):
     bio = models.TextField()
     photo = models.ImageField(upload_to = 'uploads/')
     photo = ImageField( blank = True, manual_crop = '1920x1080')
-    # user = modelsmodels.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
 
     def save_profile(self):
         self.save()
@@ -71,6 +71,10 @@ class Image(models.Model):
         image = cls.objects.filter(id= id).all()
         return image
 
+    @classmethod
+    def get_profile_pic(cls,profile):
+        images = Image.objects.filter(profile__pk = profile)
+        return images
 
     def __str__(self):
         return self.name
@@ -82,10 +86,10 @@ class Image(models.Model):
 
 
 class Comments(models.Model):
-    comment = models.TextsaField()
+    comment = models.TextField()
     posted_on = models.DateTimeField(auto_now=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save_comment(self):
         self.save()
