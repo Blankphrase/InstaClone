@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row signup-page">
         <div class="col-md-6">
-            <!-- <img src="/static/img/43cc71bb1b43.png" alt="Phone images"> -->
+            <img src="/static/images/ig.png" alt="Phone images">
         </div>
         <div class="col-md-6">
             {% if form.errors %}
@@ -14,8 +14,11 @@
             {% endif %}
             <div class="signup-fields">
                 <div class="section">
-                    <h1>Instagrum</h1>
-                    <div class="form-section">
+                    <!-- <h1>Instagrum</h1> -->
+                    <div class="mylogo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" id="logo-name" class="mylogo">
+                    </div>
+                    <div class="form-section" id="register">
                         <form method="POST">
                             {% csrf_token %}
                             {% bootstrap_form form %}
@@ -27,7 +30,7 @@
                     </div>
                 </div>
                 <div class="section">
-                    <p>Have an account? <a href="/accounts/login/">Sign In</a></p>
+                    <p class="log">Have an account? <a href="/accounts/login/">Log in</a></p>
                 </div>
             </div>
         </div>
