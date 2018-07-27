@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="container">
-    <div class="row sign-up">
+    <div class="row sign-up top-margin">
         <div class="col-md-4">
             {% if form.errors %}
             <p class="small">Password or Username is incorrect</p>
@@ -11,7 +11,7 @@
             <div class="section">
                 <!-- <h1>Instagram</h1> -->
                 <div class="mylogo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" id="logo-name" class="mylogo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"  class="mylogo">
                 </div>
                 <div class="form-section" id="login">
                     <form action="/accounts/login/" method="POST">
@@ -20,13 +20,14 @@
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-sm" value="Log in">
                         </div>
-                        <input type="hidden" name="next" value="{{next}}">
+                        <input type="hidden" name="next" value="/">
                     </form>
                 </div>
+
                 <p class="forget">Forgot Password?</p>
             </div>
             <div class="section">
-                <p class="forgot">Don't have an account? <a href="/accounts/register/">Sign-Up</a></p>
+                <p class="forgot">Don't have an account? <a href="/signup/">Sign-Up</a></p>
             </div>
         </div>
     </div>
