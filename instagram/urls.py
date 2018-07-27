@@ -5,8 +5,19 @@ from django.conf.urls.static import static
 
 urlpatterns=[
     url('^$',views.index,name = 'index'),
+    url('^home/',views.home,name = 'home'),
+    url(r'^signup/$', views.signup, name='signup'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',views.activate, name='activate'),
     url(r'^search/', views.search_results, name='search_results'),
     url(r'^user/(?P<username>\w+)', views.profile, name='profile'),
+    url(r'^accounts/edit/', views.edit_profile, name='edit_profile'),
+    url(r'^upload/$', views.upload_image, name='upload_image'),
+    # url(r'^friendship/', include('friendship.urls')),
+    url(r'^follow/(?P<user_id>\d+)', views.follow, name='follow'),
+    url(r'^comment/(?P<image_id>\d+)', views.comment, name='comment'),
+    url(r'^like/(?P<image_id>\d+)', views.like, name='like'),
+    url(r'^is_liked/', views.is_liked, name='is_liked'),
+
 ]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
