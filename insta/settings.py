@@ -16,6 +16,13 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'smurage.dev@gmail.com'
+EMAIL_HOST_PASSWORD ='sobayeni'
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -37,6 +44,8 @@ UPLOADCARE = {
 
 INSTALLED_APPS = [
     'pyuploadcare.dj',
+    'friendship',
+    'tinymce',
     'instagram',
     'bootstrap4',
     'django.contrib.admin',
@@ -85,7 +94,7 @@ WSGI_APPLICATION = 'insta.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'insta',
+        'NAME': 'instagramdb',
         'USER': 'njeri',
         'PASSWORD':'sophia'
     }
