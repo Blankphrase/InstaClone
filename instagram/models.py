@@ -3,13 +3,24 @@ import datetime as dt
 from django.contrib.auth.models import User
 from tinymce.models import HTMLField
 from pyuploadcare.dj.models import ImageField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
     bio = HTMLField()
-    photo = models.ImageField(upload_to = 'uploads/')
-    photo = ImageField( blank = True, manual_crop = '1920x1080')
+    photo = ImageField( blank = True)
     user = models.OneToOneField(User,on_delete=models.CASCADE, primary_key=True)
+
+    # Create your models here.
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
 
     def save_profile(self):
         self.save()
@@ -20,6 +31,7 @@ class Profile(models.Model):
     def update_category(self, update):
         self.bio = update
         self.save()
+
 
     @classmethod
     def search_profile(cls, name):
@@ -43,18 +55,21 @@ class Profile(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length = 60)
-    pic = models.ImageField(upload_to = 'uploads/')
-    picture = ImageField( blank = True, manual_crop = '1920x1080')
+    picture = ImageField( blank = True, manual_crop = '1080x1080')
     caption = HTMLField()
     posted = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User, on_delete=models.CASCADE)
-    likes = models.BooleanField(default=False)
+    profile_det = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def save_image(self):
         self.save()
 
     def delete_image(self):
         self.delete()
+
+    def is_liked(self):
+        pass
+
 
     @classmethod
     def update_caption(self, caption):
@@ -76,19 +91,36 @@ class Image(models.Model):
         images = Image.objects.filter(profile__pk = profile)
         return images
 
+    @property
+    def count_likes(self):
+        likes = self.likes.count()
+        return likes
+
+    @property
+    def count_comments(self):
+        comments = self.comments.count()
+        return comments
+
     def __str__(self):
         return self.name
 
     class Meta:
         ordering = ['posted']
 
+class Likes(models.Model):
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
 
+    def save_like(self):
+        self.save()
 
+    def unlike_like(self):
+        self.delete()
 
 class Comments(models.Model):
-    comment = HTMLField()
+    comment = models.CharField(max_length = 300)
     posted_on = models.DateTimeField(auto_now=True)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save_comment(self):
