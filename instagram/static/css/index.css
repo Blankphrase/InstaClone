@@ -257,7 +257,8 @@ div.lay{
     left: 162px;
     height: 437px;
     width: 247px;
-    background-image: url(/static/images/d6bf0c928b5a.jpg);
+    
+    /* background-image: url(/static/images/d6bf0c928b5a.jpg); */
 }
 a.btn.btn-sm.btn-primary.account{
     text-align: center;
