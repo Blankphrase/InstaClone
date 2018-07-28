@@ -211,11 +211,10 @@ def like(request,image_id):
         liked.delete()
         return redirect('index')
     else:
-        try:
-            new_like = Likes(image = images, user = request.user)
-            likes = new_like.save_like()
-        except AlreadyExistsError:
-            return Http404
+    
+        new_like = Likes(image = images, user = request.user)
+        likes = new_like.save_like()
+
         return redirect('index')
 
 def is_liked(request):
