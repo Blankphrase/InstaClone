@@ -6,7 +6,7 @@
 {% block content %}
 <div class="container">
     <div class="row signup-page">
-        <div class="col-md-6">
+        <div class="col-md-6 home">
             <div class="lay">
                 <p>Hehe</p>
             </div>
@@ -20,9 +20,14 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"  class="mylogo">
                     </div>
                     <div class="">
-                         <img src="{% static 'images/avatar.jpg' %}" alt="" class="img-thumbnail rounded-circle prof">
-                        <a href="/" class = "btn btn-sm btn-primary account">Continue as sophy_selo?</a>
-                        <p class="log">Not sophy_selo? <a href="/accounts/login/">Switch accounts</a></p>
+                        {% if user.profile.photo %}
+                        <img src="{{user.profile.photo.cdn_url}}" alt="profile-photo" class="img-thumbnail rounded-circle prof">
+                        {% else %}
+                        <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle prof">
+                        {% endif %}
+                         <!-- <img src="{% static 'images/avatar.jpg' %}" alt="" class="img-thumbnail rounded-circle prof"> -->
+                        <a href="/home" class = "btn btn-sm btn-primary account">Continue as {{request.user}}?</a>
+                        <p class="log" style="display:block">Not {{request.user}}? <a href="/accounts/login/">Switch accounts</a></p>
                     </div>
                 </div>
                 </div>
