@@ -3,7 +3,7 @@
 {{ form.media }}
 <nav class="navbar navbar-expand-lg navbar-light fixed-top opaque-navbar" id="navMain">
     <div class="container navmarg">
-        <a class="smooth-scroll" href="/"> <img src="{% static 'images/logo.png' %}" alt="" class="ig-logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" id="logo-name" class="brand"></a>
+        <a class="smooth-scroll" href="/home"> <img src="{% static 'images/logo.png' %}" alt="" class="ig-logo"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" id="logo-name" class="brand"></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
             aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars"></i>
@@ -18,21 +18,40 @@
                     </div>
                 </div>
             </div>
+            <div class="">
+
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link open-nav" href="{% url 'upload_image' %}" ><i class="fas fa-cloud-upload-alt"></i></a>
+                    <a class="nav-link open-nav" href="{% url 'upload_image' %}" >
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p> Upload Image  </p>
+                    </a>
+
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link open-nav" href="#"><i class="far fa-heart"></i></a>
+                    <a class="nav-link open-nav" href="#">
+                        <i class="far fa-heart"></i>
+                        <p> Discover People </p>
+                    </a>
+
                 </li>
-                <li>
-                    <a class="nav-link open-nav" href="{% url 'profile' username=user %}"><i class="far fa-user"></i></a>
+                <li class="nav-item">
+                    <a class="nav-link open-nav" href="{% url 'profile' username=user %}">
+                        <i class="far fa-user show"></i>
+                        <p> Profile </p>
+                    </a>
+
                 </li>
-                <li>
-                    <a class="nav-link open-nav" data-toggle="modal" data-target="#settings"><i class="fas fa-th"></i></a>
+                <li class="nav-item">
+                    <a class="nav-link open-nav" data-toggle="modal" data-target="#settings">
+                        <i class="fas fa-th"></i>
+                        <p> Settings </p>
+                    </a>
+
                 </li>
 
             </ul>
+        </div>
         </div>
     </div>
 </nav>
