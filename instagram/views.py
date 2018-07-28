@@ -110,10 +110,15 @@ def home(request):
 def profile(request, username):
     title = "Profile"
     profile = User.objects.get(username=username)
+    comments = Comments.objects.all()
     users = User.objects.get(username=username)
     follow = len(Follow.objects.followers(users))
     following = len(Follow.objects.following(users))
     people_following = Follow.objects.following(request.user)
+    id = request.user.id
+    liked_images = Likes.objects.filter(user_id=id)
+    mylist = [i.image_id for i in liked_images]
+    form = CommentForm()
 
     try :
         profile_details = Profile.get_by_id(profile.id)
@@ -122,7 +127,7 @@ def profile(request, username):
 
 
     images = Image.get_profile_pic(profile.id)
-    return render(request, 'profile/profile.html', {'title':title, 'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'people_following':people_following})
+    return render(request, 'profile/profile.html', {'title':title, 'comments':comments,'profile':profile, 'profile_details':profile_details, 'images':images, 'follow':follow, 'following':following, 'list':mylist,'people_following':people_following,'form':form})
 
 @login_required(login_url='/accounts/login/')
 def edit_profile(request):
@@ -187,12 +192,23 @@ def follow(request,user_id):
         follow = Follow.objects.add_follower(request.user, other_user)
     except AlreadyExistsError:
         return Http404
-    return redirect('profile', username=request.user)
+    return redirect('index')
+
+def unfollow(request,user_id):
+    other_user = User.objects.get(id = user_id)
+    try:
+        follow = Follow.objects.remove_follower(request.user, other_user)
+    except AlreadyExistsError:
+        return Http404
+    return redirect('index')
+
 
 def like(request,image_id):
     images = Image.objects.get(id = image_id)
-
-    if Likes.objects.filter(image=image_id, user=request.user):
+    liked = Likes.objects.filter(image=image_id, user=request.user).first()
+    print(liked)
+    if liked:
+        liked.delete()
         return redirect('index')
     else:
         try:
