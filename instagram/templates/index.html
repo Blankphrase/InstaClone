@@ -8,6 +8,7 @@
 <div class="container top-marg profile home">
     <div class="row uploads">
         <div class="col-xs-12 col-sm-12 col-md-7">
+            
             {% for image in images %}
             <div class="card">
                 <div class="card-title">
@@ -30,23 +31,18 @@
                     <a href="{% url 'like' image_id=image.id%}">
                     <img class="card-img-top" src="{{image.picture.cdn_url}}" alt="Image of {{image.name}}">
                     </a>
-                
+
                 <div class="card-body">
 
                         <span>
-                            {{image.count_likes}}
-
                             {% if image.id in list %}
-                                yass
+                                <i class="far fa-heart likedheart"></i>
                             {% else %}
-                                <!-- {{ list }} --> naah
+                                <i class="far fa-heart"></i>
                             {% endif %}
-                            <i class="far fa-heart"></i>
                         </span>
                         <span>
-                            {{image.count_comments}}
-                            <i class="far fa-comment">
-                            </i>
+                            <i class="far fa-comment clickme"></i>
                         </span>
                     <p class = "inline">
                     <strong class="list-inline">{{image.profile.username}} </strong>
@@ -54,12 +50,14 @@
                     <span class = "list-inline">{{image.caption | truncatechars:150 | safe}} <a href="#" class="desc">more</a> </span>
                     {% endautoescape %}
                     </p>
+                    <p style="display:block">    {{image.count_likes}} likes </p>
                     <p class="clickcomment text-muted">
-                        Load comments <i class="fas fa-ellipsis-h" style="padding:5px"></i>
+                        Load comments ({{image.count_comments}})<i class="fas fa-ellipsis-h" style="padding:5px"></i>
                     </p>
                     <div class="showcomment comments">
                         {% for comment in comments %}
                         {% if comment.image_id == image.id %}
+
                         <div class="commentdetail"> <span> {{comment.user.username}} </span>
                             <p>{{comment.comment}}</p>
                         </div>
@@ -138,7 +136,7 @@
                                 {%else%}
 
                                     {% if profile in following%}
-                                        <a href="{%url 'follow' user_id=profile.id %}" class="btn btn-sm btn-primary followbtn">Following</a>
+                                        <a href="{%url 'unfollow' user_id=profile.id %}" class="btn btn-sm btn-primary followbtn">Following</a>
                                     {% else %}
                                         <a href="{%url 'follow' user_id=profile.id %}" class="btn btn-sm btn-primary followbtn">Follow</a>
                                     {% endif %}
