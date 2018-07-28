@@ -1,0 +1,4 @@
+virtual/
+.env
+insta/settings
+.idea
