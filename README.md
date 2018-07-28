@@ -1,19 +1,22 @@
 # ![]()INSTAGRAM CLONE
-This is an Independent project for Moringa Core Django module, July th 2018.
+This is an Independent project for Moringa Core Django module, July 20th 2018.
 
 ## Description
 
-InstaClone is a social  web application that is used by users to post their pictures, follow other ussers and like other their pictures. They can also 
-Sunsplash is a photo gallery web application to showcase beautiful pictures. Users get can view photos uploaded by admin. Users can see photos based on the location, by clicking on the listed locations in the menu. They can also copy the link to a photo to paste at their discretion. They can also search for photos based on the categories.
+InstaClone is a social  web application that is used by users to post their pictures, follow other users and like other their pictures. They can also follow other users as in instagram app.
+
 
 ## Features
-- The home page allows users to see various images:
-- User can see all images per location they were taken
-- Users can also search for images based categories
-- Admin can upload images from a django dashboard
+- Users create an account and confirm through email verification.
+- User can log in to application and view other peoples posts.
+- Users can follow other users and unfollow them.
+- A user can like and comment on a post.
+- A user can upload posts and edit their profile.
+- A user can view other users profle pages and full details of an image by clicking on the image.
+- Admin can regulate images uploaded by deleting from the admin dashboard as well as completely close a users account.
 
 ## View Live Site here
-View the complete site [here](https://sunsplash-sophia.herokuapp.com/)
+View the complete site [here](https://instaclone-sophia.herokuapp.com/)
 
 
 ## Technologies Used
@@ -28,7 +31,7 @@ View the complete site [here](https://sunsplash-sophia.herokuapp.com/)
 To view the user dtories or BDD check the [specs file](specs.md).
 
 ### Prerequisite
-The Sunsplash project requires a prerequisite understanding of the following:
+The Instaclone project requires a prerequisite understanding of the following:
 - Django Framework
 - Python3.6
 - Postgres
@@ -49,7 +52,7 @@ Install dependancies that will create an environment for the app to run `pip3 in
 Create .env file and paste paste the following filling where appropriate:
 
     SECRET_KEY = '<Secret_key>'
-    DBNAME = 'gallery'
+    DBNAME = 'instagramdb'
     USER = '<Username>'
     PASSWORD = '<password>'
     DEBUG = True
