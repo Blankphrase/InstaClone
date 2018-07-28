@@ -1,4 +1,4 @@
 virtual/
 .env
-insta/settings
 .idea
+insta/settings.py
