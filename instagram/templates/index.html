@@ -8,12 +8,12 @@
 <div class="container top-marg profile home">
     <div class="row uploads">
         <div class="col-xs-12 col-sm-12 col-md-7">
-            
+
             {% for image in images %}
             <div class="card">
                 <div class="card-title">
 
-                        {% if profile.profile.photo %}
+                        {% if image.profile_det.photo %}
                         <img src="{{image.profile_det.photo.cdn_url}}" alt="profile-photo" class="img-thumbnail rounded-circle user">
                         {% else %}
                         <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle user">
