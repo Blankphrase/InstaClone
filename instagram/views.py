@@ -188,18 +188,16 @@ def upload_image(request):
 
 def follow(request,user_id):
     other_user = User.objects.get(id = user_id)
-    try:
-        follow = Follow.objects.add_follower(request.user, other_user)
-    except AlreadyExistsError:
-        return Http404
+
+    follow = Follow.objects.add_follower(request.user, other_user)
+
     return redirect('index')
 
 def unfollow(request,user_id):
     other_user = User.objects.get(id = user_id)
-    try:
-        follow = Follow.objects.remove_follower(request.user, other_user)
-    except AlreadyExistsError:
-        return Http404
+    
+    follow = Follow.objects.remove_follower(request.user, other_user)
+
     return redirect('index')
 
 
@@ -211,7 +209,7 @@ def like(request,image_id):
         liked.delete()
         return redirect('index')
     else:
-    
+
         new_like = Likes(image = images, user = request.user)
         likes = new_like.save_like()
 
