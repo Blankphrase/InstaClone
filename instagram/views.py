@@ -30,7 +30,7 @@ def signup(request):
             user.is_active = False
             user.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your instagram account.'
             message = render_to_string('registration/acc_active_email.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -195,7 +195,7 @@ def follow(request,user_id):
 
 def unfollow(request,user_id):
     other_user = User.objects.get(id = user_id)
-    
+
     follow = Follow.objects.remove_follower(request.user, other_user)
 
     return redirect('index')

@@ -25,13 +25,13 @@ EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD =config('EMAIL_HOST_PASSWORD')
-ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = '4(hhm#hv_xb*th+u@v#ei8(ku0pej2i141e87boim5eh0sxs&x'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
