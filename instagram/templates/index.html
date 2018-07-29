@@ -51,7 +51,7 @@
                     {% endautoescape %}
                     </p>
                     <p style="display:block">    {{image.count_likes}} likes </p>
-                    <p class="clickcomment text-muted">
+                    <p class="clickcomment text-muted" style="cursor:pointer">
                         Load comments ({{image.count_comments}})<i class="fas fa-ellipsis-h" style="padding:5px"></i>
                     </p>
                     <div class="showcomment comments">
@@ -68,7 +68,7 @@
                     </div>
                     <hr>
 
-                    <p class="text-muted clickme">
+                    <p class="text-muted clickme" style="cursor:pointer">
                         Add a comment
                     </p>
                     <form action="{%url 'comment' image_id=image.id %}" method="POST" enctype="multipart/form-data" class="hideme">
@@ -152,7 +152,7 @@
 
                                     <p style="display:block">{{image.count_likes}} likes </p>
 
-                                    <p class="text-muted clickme">
+                                    <p class="text-muted clickme" style="cursor:pointer">
                                         Add a comment
                                     </p>
                                     <form action="{%url 'comment' image_id=image.id %}" method="POST" enctype="multipart/form-data" class="hideme">
