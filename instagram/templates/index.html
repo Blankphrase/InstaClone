@@ -47,7 +47,7 @@
                     <p class = "inline">
                     <strong class="list-inline">{{image.profile.username}} </strong>
                     {% autoescape on %}
-                    <span class = "list-inline">{{image.caption | truncatechars:150 | safe}} <a href="#" class="desc">more</a> </span>
+                    <span class = "list-inline">{{image.caption | truncatechars:150 | safe}} <a href="#" class="desc" data-toggle="modal" data-target="#{{image.id}}" >more</a> </span>
                     {% endautoescape %}
                     </p>
                     <p style="display:block">    {{image.count_likes}} likes </p>
@@ -90,18 +90,86 @@
         <!-- Modal class to display details of image -->
         <!-- Modal class to display comment form -->
         <!-- Image details modal -->
-{% for image in images %}
-    <div class="modal fade" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        {% for image in images %}
+            <div class="modal fade dets" id="{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog dets" role="document">
+                    <div class="modal-content dets">
 
-                <div class="modal-body">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-8 col-lg-8">
+                                    <a href="{% url 'like' image_id=image.id%}"><img id="img{{image.id}}" src="{{image.picture.cdn_url}}" class="img-thumbnail mod" alt="Image" style="cursor:pointer"></a>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="" style="margin:5px">
 
+                                    <!-- <h4 class = "desc">Location</h4> -->
+                                    {% if user.profile.photo %}
+                                    <img src="{{user.profile.photo.cdn_url}}" alt="profile-photo" class="img-thumbnail rounded-circle user">
+                                    {% else %}
+                                    <img src="/static/images/avatar.jpg" alt="avatar" class="img-thumbnail rounded-circle user">
+                                    {% endif %}
+                                    <strong class="list-inline">{{user.username}} </strong>
+                                        <hr>
+
+                                    <p class = "inline">
+                                    <strong class="list-inline">{{image.profile.username}} </strong>
+                                    {% autoescape on %}
+                                    <span class = "list-inline">{{image.caption | safe}} </span>
+                                    {% endautoescape %}
+                                    </p>
+                                    <p class="text-muted" style="display:block">comments</p>
+                                    <hr>
+
+                                    <div class="comments_prof">
+                                        {% for comment in comments %}
+                                        {% if comment.image_id == image.id %}
+
+                                        <div class="list-inline">
+                                            <p> <strong> {{comment.user.username}} </strong>
+                                            {{comment.comment}}</p>
+                                        </div>
+                                        {% else %}
+                                        {% endif %}
+                                        {% endfor %}
+
+                                    </div>
+                                    <!-- <p class="text-muted">
+                                        Load comments ({{image.count_comments}})<i class="fas fa-ellipsis-h" style="padding:5px"></i>
+                                    </p> -->
+                                    <hr>
+                                    {% if image.id in list %}
+                                        <i class="far fa-heart likedheart"></i>
+                                    {% else %}
+                                        <i class="far fa-heart"></i>
+                                    {% endif %}
+                                    <!-- <span>
+                                        <i class="far fa-heart"></i>
+                                    </span> -->
+                                    <span>
+                                        <i class="far fa-comment clickme"></i>
+                                    </span>
+
+                                    <p style="display:block">{{image.count_likes}} likes </p>
+
+                                    <p class="text-muted clickme">
+                                        Add a comment
+                                    </p>
+                                    <form action="{%url 'comment' image_id=image.id %}" method="POST" enctype="multipart/form-data" class="hideme">
+                                        {% csrf_token %}
+                                        {% bootstrap_form form %}
+                                        <input type="hidden" name="next" value="/">
+                                    </form>
+                                </div>
+                            </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-{% endfor %}
+        {% endfor %}
 
         <!-- End of posted images main section -->
 
