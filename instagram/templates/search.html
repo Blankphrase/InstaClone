@@ -21,7 +21,12 @@
                 <a href="{% url 'profile' username=user.username %}" class="link">
                 <span class="list-inline username">{{user.username}}</span>
                 </a>
-                <a href="#" class="btn btn-sm btn-primary followbtn">Follow</a>
+                {% if user in following%}
+                    <a href="{%url 'unfollow' user_id=profile.id %}" class="btn btn-sm btn-primary followbtn">Following</a>
+                {% else %}
+                    <a href="{%url 'follow' user_id=profile.id %}" class="btn btn-sm btn-primary followbtn">Follow</a>
+                {% endif %}
+                <!-- <a href="#" class="btn btn-sm btn-primary followbtn">Follow</a> -->
             </div>
             {% endfor %}
         </div>

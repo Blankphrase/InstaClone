@@ -28,10 +28,6 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
-    def update_category(self, update):
-        self.bio = update
-        self.save()
-
 
     @classmethod
     def search_profile(cls, name):
