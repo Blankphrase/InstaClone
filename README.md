@@ -47,7 +47,7 @@ Activate virtual environment using python3.6 as default handler
 Install dependancies that will create an environment for the app to run `pip3 install -r requirements.txt`
 ####  Create the Database
     - psql
-    - CREATE DATABASE gallery;
+    - CREATE DATABASE instagramdb;
 ####  .env file
 Create .env file and paste paste the following filling where appropriate:
 
@@ -57,7 +57,7 @@ Create .env file and paste paste the following filling where appropriate:
     PASSWORD = '<password>'
     DEBUG = True
 #### Run initial Migration
-    python3.6 manage.py makemigrations gallery
+    python3.6 manage.py makemigrations instagram
     python3.6 manage.py migrate
 #### Run the app
     python3.6 manage.py runserver
